@@ -18,7 +18,7 @@ You can download, clone and install the source from GitHub
 ```
 $ git clone https://github.com/vrinceanu/Lmixing.git
 $ cd Lmixing
-$ python setup.py install
+$ python setup.py install --user
 ```
 
 If you wish to know more in detail what git is and what you can do with it, the [github help page](https://help.github.com/articles/set-up-git) has all the references needed.
