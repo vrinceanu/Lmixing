@@ -16,7 +16,7 @@ This module depends on [scipy](https://www.scipy.org/) for dealing with physical
 You can download, clone and install the source from GitHub
 
 ```
-$ git clone https://github.com/Lmixing/Lmixing.git
+$ git clone https://github.com/vrinceanu/Lmixing.git
 $ cd Lmixing
 $ python setup.py install
 ```
