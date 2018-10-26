@@ -37,4 +37,4 @@ As a quick example, we calculate the rate coefficient for
 
 
 
-**Citing Lmixing:**
+**Citing Lmixing:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1471776.svg)](https://doi.org/10.5281/zenodo.1471776)
