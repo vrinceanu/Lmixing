@@ -11,7 +11,7 @@ In order to avoid truncation error and loss of precision due to subtraction of n
 
 ## Installation
 
-This module depends on [scipy](https://www.scipy.org/) for dealing with physical constants and unit conversion, and on [mpmath](http://mpmath.org) for extending the precision of floating point numbers beyond hardware capabilities.
+This module requires Pyhton 3.x and depends on [scipy](https://www.scipy.org/) for dealing with physical constants and unit conversion, and on [mpmath](http://mpmath.org) for extending the precision of floating point numbers beyond hardware capabilities.
 
 You can download, clone and install the source from GitHub
 
