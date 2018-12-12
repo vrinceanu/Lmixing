@@ -13,7 +13,11 @@ MAX_ORDER = 16
 def kQ(n,li,lf,theta):
     prob = PQ(n, li, lf)
     W = lambda z: prob.at(3/2/n/z)*z*mpmath.exp(-theta*z*z/2)
-    k1 = mpmath.quadgl(W, [0,0.01,0.05,0.1,0.2,2,mpmath.inf])
+    tol = 1.e-4
+    Q = quadGLK(tol)
+    k1  = Q.integrate(W, 1.e-8, 0.1)
+    k1 += Q.integrate(W, 0.1, 2)
+    k1 += Q.integrate(W, 2, 100)
     return(float(k1))
 
 def kQd(n,l,theta):
@@ -28,7 +32,7 @@ def kQd(n,l,theta):
     return(float(k1))
 
 def kC(n,li,lf):
-    return(3)
+    return(3/4*((li+lf) - min(li,lf)**2*(li+lf+2*abs(li-lf))/n**2)/(li+1/2)/abs(li-lf)**3)
 
 def kSC(n,l,theta):
     GS = 0
@@ -57,7 +61,17 @@ def kPS(n,l,theta):
 
 def rate(n, li, T, rho = 0, lf = None, method = 'quantum'):
     """
-    function to calculate L-mixing rate coefficients with various approximations
+    function to calculate L-mixing rate coefficients in cm^3/s with various approximations
+    required arguments:
+        n   -- principal quantum number
+        li  -- angular momentum quantum number for initial state
+        T   -- proton temperature in K
+    keyword arguments:
+        rho -- electron density in cm^-3 (default: 0)
+        lf  -- final angular momentum quantum number (default: not used)
+        method -- "quantum" (default), "semiclassical", "classical", "P_and_S", "Born"
+    when lf is not provided, rho is required and the rate is for the combined n li -> n li +/- 1 transition
+    when lf is given such that abs(lf - li) > 1, rho is not required and only the classical approximation is available
     """
     k = 0
     if (lf == None or abs(lf-li) == 1) and rho == 0:
@@ -84,7 +98,7 @@ def rate(n, li, T, rho = 0, lf = None, method = 'quantum'):
                   'for dipole allowed transitions ***').format(lf,method),file=sys.stderr)
         else:
             k = kSC(n,li, theta)
-    if method=="born":
+    if method=="Born":
         if lf:
             print(('*** Lf = {0}, {1} approximation works only '
                   'for dipole allowed transitions ***').format(lf,method),file=sys.stderr)
