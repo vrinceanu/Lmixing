@@ -25,7 +25,7 @@ If you wish to know more in detail what git is and what you can do with it, the 
 
 ## Usage
 
-As a quick example, we calculate the rate coefficient for
+As a quick example, we calculate the rate coefficient for  a specific case and compare two approximations:
 
 ```Pyhton
 >>> from Lmixing.rates import rate
