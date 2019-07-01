@@ -3,9 +3,13 @@ import math
 import mpmath
 import fractions
 
-def Gamma(x):
+def Gamma1(x):
     G = mpmath.quad(lambda t: mpmath.exp(-t)/t, [x, mpmath.inf])
     return(float(G))
+
+
+def Gamma(x):
+    return(float(mpmath.gammainc(0, x)))
 
 def Harmonic(n):
     H = 0
@@ -23,7 +27,7 @@ F = [math.factorial(x) for x in range(0, MAX_FACT)]
 # easy factorial with check
 def fact(n):
     if (int(n) != n or n >= MAX_FACT or n < 0):
-        print("*** triangular error, factorial of ", n, file=sys.stderr)
+        print("*** triangular error ! factorial of ", n, file=sys.stderr)
         return 0
     else:
         return F[int(n)]
@@ -63,7 +67,9 @@ class PQ:
         self.W = []
         self.H = []
         self.counter = 0
-        self.L_range = range(abs(l1-l2), min(l1+l2+1, n))
+        self.L_range = range(abs(l1-l2), 1 + min(l1+l2, n-1))
+        if (l1 > n - 1 or l2 > n - 1):
+            self.L_range = range(0)
         for L in self.L_range:
             self.W.append((2*L+1)*(2*l2+1)*
             fractions.Fraction(fact(n-L-1),fact(n+L))*

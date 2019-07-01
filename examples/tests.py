@@ -37,16 +37,17 @@ print("is ", r," cm^3/2 and took ", end-start," sec")
 
 T = 10; ne = 10; L = 1
 
-print("  n   quantum    semiclassical PS64     Born\n"\
+print("  n   quantum    semiclassical PS64     Born    PS-M\n"\
       "  ================================================")
 
-for n in range(10,50,10):
-    print("{0:4d}  {1:10.4e} {2:10.4e}  {3:10.4e} {4:10.4e}".
+for n in range(10,100,50):
+    print("{0:4d}  {1:10.4e} {2:10.4e}  {3:10.4e} {4:10.4e} {4:10.4e}".
     format(n,\
             rate(n, L, T, ne),\
             rate(n, L, T, ne, method='semiclassical'),\
             rate(n, L, T, ne, method='P_and_S'),\
-            rate(n, L, T, ne, method='Born')
+            rate(n, L, T, ne, method='Born'),\
+            rate(n, L, T, ne, method='PS_M')
             ))
 print( rate(20, 1, 10, rho=10))
             

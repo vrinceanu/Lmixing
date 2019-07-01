@@ -12,7 +12,7 @@ setuptools.setup(
     license = 'Creative Commons Attribution-Noncommercial-Share Alike license',
     description = "A package to calculate L-mixing rate coefficients",
     long_description = open('README.md').read(),
-    long_description_content_type="text/markdown",
+    long_description_content_type = "text/markdown",
     packages = setuptools.find_packages(),
     install_requires = ['scipy', 'mpmath'],
     python_requires='>=3',
